@@ -76,7 +76,7 @@ def winner(board):
 
     # diagonals
     lines.append([board[i][i] for i in range(3)])
-    lines.append(board[i][2 - i] for i in range(3))
+    lines.append([board[i][2 - i] for i in range(3)])
 
     for line in lines:
         if line == [X, X, X]:
