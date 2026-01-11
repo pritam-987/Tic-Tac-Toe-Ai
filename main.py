@@ -1,9 +1,20 @@
+import os
 import sys
 import time
 
 import pygame
 
 import tictactoe as ttt
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS  # PyInstaller temp folder
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 
 pygame.init()
 WIDTH, HEIGHT = 500, 500
@@ -13,9 +24,10 @@ pygame.display.set_caption("Tic Tac Toe AI")
 black = (0, 0, 0)
 white = (255, 255, 255)
 
-largeFont = pygame.font.SysFont("arial", 36)
-mediumFont = pygame.font.SysFont("arial", 24)
-moveFont = pygame.font.SysFont("arial", 48)
+path = resource_path("OpenSans-Regular.ttf")
+largeFont = pygame.font.Font(path, 36)
+mediumFont = pygame.font.Font(path, 24)
+moveFont = pygame.font.Font(path, 48)
 
 
 def main():
