@@ -114,4 +114,59 @@ def utility(board):
 
 
 def minimax(board):
-    pass
+    """
+    return the most optimal move for the player
+    """
+    if terminal(board):
+        return None
+
+    if player(board) == X:
+        best_value = float("-inf")
+        best_action = None
+
+        for action in actions(board):
+            v = min_value(result(board, action))
+
+            if v > best_value:
+                best_value = v
+                best_action = action
+
+        return best_action
+    else:
+        best_value = float("inf")
+        best_action = None
+
+        for action in actions(board):
+            v = max_value(result(board, action))
+
+            if v < best_value:
+                best_value = v
+                best_action = action
+
+        return best_action
+
+
+def max_value(board):
+    """
+    return the max value for the minmax fuction
+    """
+    v = float("-inf")
+    if terminal(board):
+        return utility(board)
+    for action in actions(board):
+        v = max(v, min_value(result(board, action)))
+
+    return v
+
+
+def min_value(board):
+    """
+    return the min value for the minmax fuction
+    """
+    v = float("inf")
+    if terminal(board):
+        return utility(board)
+    for action in actions(board):
+        v = min(v, max_value(result(board, action)))
+
+    return v
